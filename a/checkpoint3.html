@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+ <style>
+    h1 { color: yellow; }
+</style>
+<title>RNG</title>
+</head>
+
+<body background="https://i.ibb.co/PmjvGQg/fundo-rng.png">
+
+    <h1 align="left">RNG</h1>
+    <canvas width="621" height="621"></canvas><br><br>
+
+     <button type="button" class="button1">Desfazer</button>
+     <button type="button" class="button2">Eliminar 1</button>
+     <button type="button" class="button3">Eliminar 2</button>
+     <button type="button" class="button4">Eliminar 3</button>
+     <button type="button" class="button5">Eliminar 4</button>
+     <button type="button" class="button6">Eliminar 5</button>
+     <button type="button" class="button7">Eliminar 6</button>
+     <button type="button" class="button8">Eliminar 7</button>
+     <button type="button" class="button9">Eliminar 8</button>
+  
+	<script>
+
+	//#region variáveis globais e query selectors
+	var tela = document.querySelector('canvas');
+	var pincel = tela.getContext('2d');
+	var botao1 = document.querySelector(".button1")
+	var botao2 = document.querySelector(".button2")
+    var botao3 = document.querySelector(".button3")
+    var botao4 = document.querySelector(".button4")
+    var botao5 = document.querySelector(".button5")
+    var botao6 = document.querySelector(".button6")
+    var botao7 = document.querySelector(".button7")
+    var botao8 = document.querySelector(".button8")
+    var botao9 = document.querySelector(".button9")
+
+	var desfazerDisponivel = 1;
+
+	var cor1 ="red";
+	var cor2 ="red";
+	var cor3 ="red";
+	var cor4 ="red";
+	var cor5 ="red";
+	var cor6 ="red";
+	var cor7 ="red";
+	var cor8 ="red";
+
+	var contador1 = 100;
+	var contador2 = 100;
+	var contador3 = 100;
+	var contador4 = 100;
+	var contador5 = 100;
+	var contador6 = 100;
+	var contador7 = 100;
+	var contador8 = 100;
+
+	var contador1Backup = [];
+	var contador2Backup = [];
+	var contador3Backup = [];
+	var contador4Backup = [];
+	var contador5Backup = [];
+	var contador6Backup = [];
+	var contador7Backup = [];
+	var contador8Backup = [];
+
+	var playersVivos = 8;
+	var rodadasPassadas = 0;
+
+	var x=666;
+	var y=666;
+
+	var xDoMeMin=[];
+	var xDoMeMax=[];
+	var yDoMeMin=[];
+	var yDoMeMax=[];
+
+	var useless = "66";
+	//#endregion
+
+	//#region declação dos nomes adversario
+
+	// var adversario1 = prompt("Adversário 1");
+	// var adversario2 = prompt("Adversário 2");;
+	// var adversario3 = prompt("Adversário 3");
+	// var adversario4 = prompt("Adversário 4");
+	// var adversario5 = prompt("Adversário 5");
+	// var adversario6 = prompt("Adversário 6");
+	// var adversario7 = prompt("Adversário 7");
+	// var adversario8 = prompt("Adversário 8"); 
+
+
+	var adversario1 ='1';
+	var adversario2 ='2';
+	var adversario3 ='3';
+	var adversario4 ='me';
+	var adversario5 ='5';
+	var adversario6 ='6';
+	var adversario7 ='7';
+	var adversario8 ='8'; 
+
+	//#endregion
+
+	//#region function checkMe
+  function checkMe(){
+	if (adversario1=="me") {
+		contador1=1000;
+        xDoMeMin.push(210);
+        xDoMeMax.push(410);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+		if (adversario2=="me") {
+		contador2=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+		if (adversario3=="me") {
+		contador3=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(210);
+        yDoMeMax.push(410);
+		}
+
+		if (adversario4=="me") {
+		contador4=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(420);
+        yDoMeMax.push(630);
+        }
+
+		if (adversario5=="me") {
+		contador5=1000;
+        xDoMeMin.push(210);
+        xDoMeMax.push(410);
+        yDoMeMin.push(420);
+        yDoMeMax.push(620);
+		}
+
+		if (adversario6=="me") {
+		contador6=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(420);
+        yDoMeMax.push(620);
+		}
+
+		if (adversario7=="me") {
+		contador7=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(210);
+        yDoMeMax.push(410);
+		}
+
+		if (adversario8=="me") {
+		contador8=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+    }
+	//#endregion
+    //#region function checkEliminado1
+  function checkEliminado1(){
+	if (adversario1=="eliminado1") {
+		contador1=1000;
+        xDoMeMin.push(210);
+        xDoMeMax.push(410);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+		if (adversario2=="eliminado1") {
+		contador2=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+		if (adversario3=="eliminado1") {
+		contador3=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(210);
+        yDoMeMax.push(410);
+		}
+
+		if (adversario4=="eliminado1") {
+		contador4=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(420);
+        yDoMeMax.push(630);
+        }
+
+		if (adversario5=="eliminado1") {
+		contador5=1000;
+        xDoMeMin.push(210);
+        xDoMeMax.push(410);
+        yDoMeMin.push(420);
+        yDoMeMax.push(620);
+		}
+
+		if (adversario6=="eliminado1") {
+		contador6=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(420);
+        yDoMeMax.push(620);
+		}
+
+		if (adversario7=="eliminado1") {
+		contador7=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(210);
+        yDoMeMax.push(410);
+		}
+
+		if (adversario8=="eliminado1") {
+		contador8=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+        refresh();
+    }
+	//#endregion
+    //#region function checkEliminado2
+
+    function checkEliminado2(){
+	if (adversario1=="eliminado2") {
+		contador1=1000;
+        xDoMeMin.push(210);
+        xDoMeMax.push(410);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+		if (adversario2=="eliminado2") {
+		contador2=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+		if (adversario3=="eliminado2") {
+		contador3=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(210);
+        yDoMeMax.push(410);
+		}
+
+		if (adversario4=="eliminado2") {
+		contador4=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(420);
+        yDoMeMax.push(630);
+        }
+
+		if (adversario5=="eliminado2") {
+		contador5=1000;
+        xDoMeMin.push(210);
+        xDoMeMax.push(410);
+        yDoMeMin.push(420);
+        yDoMeMax.push(620);
+		}
+
+		if (adversario6=="eliminado2") {
+		contador6=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(420);
+        yDoMeMax.push(620);
+		}
+
+		if (adversario7=="eliminado2") {
+		contador7=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(210);
+        yDoMeMax.push(410);
+		}
+
+		if (adversario8=="eliminado2") {
+		contador8=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+        refresh();
+    }
+	//#endregion
+    //#region function checkEliminado3
+
+   function checkEliminado3(){
+	if (adversario1=="eliminado3") {
+		contador1=1000;
+        xDoMeMin.push(210);
+        xDoMeMax.push(410);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+		if (adversario2=="eliminado3") {
+		contador2=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+		if (adversario3=="eliminado3") {
+		contador3=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(210);
+        yDoMeMax.push(410);
+		}
+
+		if (adversario4=="eliminado3") {
+		contador4=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(420);
+        yDoMeMax.push(630);
+        }
+
+		if (adversario5=="eliminado3") {
+		contador5=1000;
+        xDoMeMin.push(210);
+        xDoMeMax.push(410);
+        yDoMeMin.push(420);
+        yDoMeMax.push(620);
+		}
+
+		if (adversario6=="eliminado3") {
+		contador6=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(420);
+        yDoMeMax.push(620);
+		}
+
+		if (adversario7=="eliminado3") {
+		contador7=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(210);
+        yDoMeMax.push(410);
+		}
+
+		if (adversario8=="eliminado3") {
+		contador8=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+        refresh();
+    }
+	//#endregion
+    //#region function checkEliminado4
+
+   function checkEliminado4(){
+	if (adversario1=="eliminado4") {
+		contador1=1000;
+        xDoMeMin.push(210);
+        xDoMeMax.push(410);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+		if (adversario2=="eliminado4") {
+		contador2=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+		if (adversario3=="eliminado4") {
+		contador3=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(210);
+        yDoMeMax.push(410);
+		}
+
+		if (adversario4=="eliminado4") {
+		contador4=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(420);
+        yDoMeMax.push(630);
+        }
+
+		if (adversario5=="eliminado4") {
+		contador5=1000;
+        xDoMeMin.push(210);
+        xDoMeMax.push(410);
+        yDoMeMin.push(420);
+        yDoMeMax.push(620);
+		}
+
+		if (adversario6=="eliminado4") {
+		contador6=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(420);
+        yDoMeMax.push(620);
+		}
+
+		if (adversario7=="eliminado4") {
+		contador7=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(210);
+        yDoMeMax.push(410);
+		}
+
+		if (adversario8=="eliminado4") {
+		contador8=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+        refresh();
+    }
+	//#endregion
+    //#region function checkEliminado5
+
+   function checkEliminado5(){
+	if (adversario1=="eliminado5") {
+		contador1=1000;
+        xDoMeMin.push(210);
+        xDoMeMax.push(410);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+		if (adversario2=="eliminado5") {
+		contador2=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+		if (adversario3=="eliminado5") {
+		contador3=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(210);
+        yDoMeMax.push(410);
+		}
+
+		if (adversario4=="eliminado5") {
+		contador4=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(420);
+        yDoMeMax.push(630);
+        }
+
+		if (adversario5=="eliminado5") {
+		contador5=1000;
+        xDoMeMin.push(210);
+        xDoMeMax.push(410);
+        yDoMeMin.push(420);
+        yDoMeMax.push(620);
+		}
+
+		if (adversario6=="eliminado5") {
+		contador6=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(420);
+        yDoMeMax.push(620);
+		}
+
+		if (adversario7=="eliminado5") {
+		contador7=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(210);
+        yDoMeMax.push(410);
+		}
+
+		if (adversario8=="eliminado5") {
+		contador8=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+        refresh();
+    }
+	//#endregion
+    //#region function checkEliminado6
+
+   function checkEliminado6(){
+	if (adversario1=="eliminado6") {
+		contador1=1000;
+        xDoMeMin.push(210);
+        xDoMeMax.push(410);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+		if (adversario2=="eliminado6") {
+		contador2=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+		if (adversario3=="eliminado6") {
+		contador3=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(210);
+        yDoMeMax.push(410);
+		}
+
+		if (adversario4=="eliminado6") {
+		contador4=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(420);
+        yDoMeMax.push(630);
+        }
+
+		if (adversario5=="eliminado6") {
+		contador5=1000;
+        xDoMeMin.push(210);
+        xDoMeMax.push(410);
+        yDoMeMin.push(420);
+        yDoMeMax.push(620);
+		}
+
+		if (adversario6=="eliminado6") {
+		contador6=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(420);
+        yDoMeMax.push(620);
+		}
+
+		if (adversario7=="eliminado6") {
+		contador7=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(210);
+        yDoMeMax.push(410);
+		}
+
+		if (adversario8=="eliminado6") {
+		contador8=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+        refresh();
+    }
+	//#endregion
+    //#region function checkEliminado7
+
+   function checkEliminado7(){
+	if (adversario1=="eliminado7") {
+		contador1=1000;
+        xDoMeMin.push(210);
+        xDoMeMax.push(410);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+		if (adversario2=="eliminado7") {
+		contador2=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+		if (adversario3=="eliminado7") {
+		contador3=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(210);
+        yDoMeMax.push(410);
+		}
+
+		if (adversario4=="eliminado7") {
+		contador4=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(420);
+        yDoMeMax.push(630);
+        }
+
+		if (adversario5=="eliminado7") {
+		contador5=1000;
+        xDoMeMin.push(210);
+        xDoMeMax.push(410);
+        yDoMeMin.push(420);
+        yDoMeMax.push(620);
+		}
+
+		if (adversario6=="eliminado7") {
+		contador6=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(420);
+        yDoMeMax.push(620);
+		}
+
+		if (adversario7=="eliminado7") {
+		contador7=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(210);
+        yDoMeMax.push(410);
+		}
+
+		if (adversario8=="eliminado7") {
+		contador8=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+        refresh();
+    }
+	//#endregion
+    //#region function checkEliminado8
+
+  function checkEliminado8(){
+	if (adversario1=="eliminado8") {
+		contador1=1000;
+        xDoMeMin.push(210);
+        xDoMeMax.push(410);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+		if (adversario2=="eliminado8") {
+		contador2=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+		if (adversario3=="eliminado8") {
+		contador3=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(210);
+        yDoMeMax.push(410);
+		}
+
+		if (adversario4=="eliminado8") {
+		contador4=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(420);
+        yDoMeMax.push(630);
+        }
+
+		if (adversario5=="eliminado8") {
+		contador5=1000;
+        xDoMeMin.push(210);
+        xDoMeMax.push(410);
+        yDoMeMin.push(420);
+        yDoMeMax.push(620);
+		}
+
+		if (adversario6=="eliminado8") {
+		contador6=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(420);
+        yDoMeMax.push(620);
+		}
+
+		if (adversario7=="eliminado8") {
+		contador7=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(210);
+        yDoMeMax.push(410);
+		}
+
+		if (adversario8=="eliminado8") {
+		contador8=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+        refresh();
+    }
+	//#endregion
+
+    //#region function refresh
+	function refresh(){
+
+			if (contador1<=4 && contador1>=1) {
+
+			cor1="green"
+			} else {
+			cor1="red"
+			}
+
+			if (contador2<=4 && contador2>=1) {
+			cor2="green"
+			} else {
+			cor2="red"
+			}
+
+			if (contador3<=4 && contador3>=1) {
+			cor3="green"
+			} else {
+			cor3="red"
+			}
+
+			if (contador4<=4 && contador4>=1) {
+			cor4="green"
+			} else {
+			cor4="red"
+			}
+
+			if (contador5<=4 && contador5>=1) {
+			cor5="green"
+			} else {
+			cor5="red"
+			}
+
+			if (contador6<=4 && contador6>=1) {
+			cor6="green"
+			} else {
+			cor6="red"
+			}
+
+			if (contador7<=4 && contador7>=1) {
+			cor7="green"
+			} else {
+			cor7="red"
+			}
+
+			if (contador8<=4 && contador8>=1) {
+			cor8="green"
+			} else {
+			cor8="red"
+			}
+
+			if (adversario1=="me" || adversario1=="eliminado1" || adversario1=="eliminado2" || adversario1=="eliminado3" || adversario1=="eliminado4" || adversario1=="eliminado5" || adversario6=="eliminado6" || adversario7=="eliminado7") {
+				cor1="grey";
+			}
+
+			if (adversario2=="me" || adversario2=="eliminado1" || adversario2=="eliminado2" || adversario2=="eliminado3" || adversario2=="eliminado4" || adversario2=="eliminado5" || adversario2=="eliminado6" || adversario2=="eliminado7") {
+				cor2="grey";
+			}
+
+			if (adversario3=="me" || adversario3=="eliminado1" || adversario3=="eliminado2" || adversario3=="eliminado3" || adversario3=="eliminado4" || adversario3=="eliminado5" || adversario3=="eliminado6" || adversario3=="eliminado7") {
+				cor3="grey";
+			}
+
+			if (adversario4 =="me" || adversario4=="eliminado1" || adversario4=="eliminado2" || adversario4=="eliminado3" || adversario4=="eliminado4" || adversario4=="eliminado5" || adversario4=="eliminado6" || adversario4=="eliminado7") {
+				cor4="grey";
+			}
+
+			if (adversario5=="me" || adversario5=="eliminado1" || adversario5=="eliminado2" || adversario5=="eliminado3" || adversario5=="eliminado4" || adversario5=="eliminado5" || adversario5=="eliminado6" || adversario5=="eliminado7") {
+				cor5="grey";
+			}
+
+			if (adversario6=="me" || adversario6=="eliminado1" || adversario6=="eliminado2" || adversario6=="eliminado3" || adversario6=="eliminado4" || adversario6=="eliminado5" || adversario6=="eliminado6" || adversario6=="eliminado7") {
+				cor6="grey";
+			}
+
+			if (adversario7=="me" || adversario7=="eliminado1" || adversario7=="eliminado2" || adversario7=="eliminado3" || adversario7=="eliminado4" || adversario7=="eliminado5" || adversario7=="eliminado6" || adversario7=="eliminado7") {
+				cor7="grey";
+			}
+
+			if (adversario8=="me" || adversario8=="eliminado1" || adversario8=="eliminado2" || adversario8=="eliminado3" || adversario8=="eliminado4" || adversario8=="eliminado5" || adversario8=="eliminado6" || adversario8=="eliminado7") {
+				cor8="grey";
+			}
+
+			//1
+			pincel.fillStyle = cor1;
+			pincel.fillRect(210, 0, 200, 200);
+			pincel.strokeStyle = 'black';
+			pincel.strokeRect(210, 0, 200, 200);
+			pincel.strokeRect(0, 0, 200, 200);
+			pincel.font = 'bold 20pt Menlo'
+			pincel.fillStyle = 'black'
+			pincel.fillText(adversario1, 235, 110);
+
+
+			//2
+			pincel.fillStyle = cor2;
+			pincel.fillRect(420, 0, 200, 200);
+			pincel.strokeStyle = 'black';
+			pincel.strokeRect(420, 0, 200, 200);
+			pincel.strokeRect(0, 0, 200, 200);
+			pincel.font = 'bold 20pt Menlo'
+			pincel.fillStyle = 'black'
+			pincel.fillText(adversario2, 450, 110);
+
+
+			//3
+			pincel.fillStyle = cor3;
+			pincel.fillRect(420, 210, 200, 200);
+			pincel.strokeStyle = 'black';
+			pincel.strokeRect(420, 210, 200, 200);
+			pincel.strokeRect(0, 0, 200, 200);
+			pincel.font = 'bold 20pt Menlo'
+			pincel.fillStyle = 'black'
+			pincel.fillText(adversario3, 440, 310);
+
+			//4
+			pincel.fillStyle = cor4;
+			pincel.fillRect(420, 420, 200, 200);
+			pincel.strokeStyle = 'black';
+			pincel.strokeRect(420, 420, 200, 200);
+			pincel.font = 'bold 20pt Menlo'
+			pincel.fillStyle = 'black'
+			pincel.fillText(adversario4, 435, 520);
+
+			//5
+			pincel.fillStyle = cor5;
+			pincel.fillRect(210, 420, 200, 200);
+			pincel.strokeStyle = 'black';
+			pincel.strokeRect(210, 420, 200, 200);
+			pincel.font = 'bold 20pt Menlo'
+			pincel.fillStyle = 'black'
+			pincel.fillText(adversario5, 235, 520);
+
+			//6
+			pincel.fillStyle = cor6;
+			pincel.fillRect(0, 420, 200, 200);
+			pincel.strokeStyle = 'black';
+			pincel.strokeRect(0, 420, 200, 200);
+			pincel.font = 'bold 20pt Menlo'
+			pincel.fillStyle = 'black'
+			pincel.fillText(adversario6, 25, 520);
+
+			//7
+			pincel.fillStyle = cor7
+			pincel.fillRect(0, 210, 200, 200);
+			pincel.strokeStyle = 'black';
+			pincel.strokeRect(0, 210, 200, 200);
+			pincel.font = 'bold 20pt Menlo'
+			pincel.fillStyle = 'black'
+			pincel.fillText(adversario7, 25, 310);
+
+
+			//8
+			pincel.fillStyle = cor8;
+			pincel.fillRect(0, 0, 200, 200);
+			pincel.strokeStyle = 'black';
+			pincel.strokeRect(0, 0, 200, 200);
+			pincel.font = 'bold 20pt Menlo'
+			pincel.fillStyle = 'black'
+			pincel.fillText(adversario8, 25, 110);
+
+			//middle
+			pincel.fillStyle = 'black';
+			pincel.fillRect(210, 210, 200, 200);
+			pincel.strokeStyle = 'purple';
+			pincel.strokeRect(210, 210, 200, 200);
+	}
+	//#endregion
+
+	//#region function click8
+
+	function click8(coordenada) {
+
+		x = coordenada.pageX - tela.offsetLeft;
+		y = coordenada.pageY - tela.offsetTop;
+
+        var i;
+        for (i = 0; i < xDoMeMin.length; i++) {
+            if (x>xDoMeMin[i] && x<xDoMeMax[i] && y>yDoMeMin[i] && y<yDoMeMax[i]) {
+		    return;
+		    } 
+        }
+        
+
+       	contador1Backup.push(contador1);
+		contador2Backup.push(contador2);
+		contador3Backup.push(contador3);
+		contador4Backup.push(contador4);
+		contador5Backup.push(contador5);
+		contador6Backup.push(contador6);
+		contador7Backup.push(contador7);
+		contador8Backup.push(contador8);
+
+		contador1++;
+		contador2++;
+		contador3++;
+		contador4++;
+		contador5++;
+		contador6++;
+		contador7++;
+		contador8++;
+
+		if (cor8=='grey') {
+		useless=23;
+		} else if (x<=200 && y<=200) {
+		contador8=1;
+		} 
+
+		if (cor1=='grey') {
+		useless=23;
+		} else if (x>210 && x<=410 && y<=200) {
+		contador1=1;
+		}
+
+		if (cor2=='grey') {
+		useless=23;
+		} else if (x>420 && x<=620 && y<=200) {
+		contador2=1;
+		}
+
+		if (cor3=='grey') {
+		useless=23;
+		} else if (x>=420 && x<=620 && y>=210 && y<=410) {
+		contador3=1;
+		}
+
+		if (cor4=='grey') {
+		useless=23;
+		} else if (x>=420 && x<=620 && y>=420 && y<=620) {
+		contador4=1;
+		}
+
+		if (cor5=='grey') {
+		useless=23;
+		} else if (x>=210 && x<=410 && y>=420 && y<=620) {
+		contador5=1;
+		}
+
+		if (cor6=='grey') {
+		useless=23;
+		} else if (x>=0 && x<=200 && y>=420 && y<=620) {
+		contador6=1;
+		}
+
+		if (cor7=='grey') {
+		useless=23;
+		} else if (x>=0 && x<=200 && y>=210 && y<=410) {
+		contador7=1;
+		}
+
+		rodadasPassadas++;
+
+		refresh();
+
+	
+
+	}
+	//#endregion
+	
+	//#region function desfazer
+	function desfazer() {
+		rodadasPassadas--;
+		contador1=contador1Backup[rodadasPassadas];
+		contador2=contador2Backup[rodadasPassadas];
+		contador3=contador3Backup[rodadasPassadas];
+		contador4=contador4Backup[rodadasPassadas];
+		contador5=contador5Backup[rodadasPassadas];
+		contador6=contador6Backup[rodadasPassadas];
+		contador7=contador7Backup[rodadasPassadas];
+		contador8=contador8Backup[rodadasPassadas];
+
+		contador1Backup.length=rodadasPassadas;
+		contador2Backup.length=rodadasPassadas;
+		contador3Backup.length=rodadasPassadas;
+		contador4Backup.length=rodadasPassadas;
+		contador5Backup.length=rodadasPassadas;
+		contador6Backup.length=rodadasPassadas;
+		contador7Backup.length=rodadasPassadas;
+		contador8Backup.length=rodadasPassadas;
+
+		refresh();
+	
+	}
+
+	//#endregion
+
+	//#region function eliminar1
+	function eliminar1() {
+	adversario1="eliminado1";
+
+    contador1=100;
+    contador2=100;
+    contador3=100;
+    contador4=100;
+    contador5=100;
+    contador6=100;
+    contador7=100; 
+    contador8=100;
+
+    checkMe();
+    checkEliminado1();
+    checkEliminado2();
+    checkEliminado3();
+    checkEliminado4();
+    checkEliminado5();
+    checkEliminado6();
+    checkEliminado7();
+    checkEliminado8();
+  	refresh();
+	}
+	//#endregion
+
+	//#region onload e afins
+
+        onload=checkMe();
+    	onload=refresh();
+
+		tela.onclick = click8;
+
+		botao1.onclick = desfazer;
+		botao2.onclick = eliminar1;
+	//#endregion
+
+	</script>
+</body>
+</html>

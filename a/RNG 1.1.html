@@ -1,0 +1,2117 @@
+<!-- #region html basic structure--> 
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<title>RNG</title>
+<!-- endregion -->
+
+<!-- #region style--> 
+ <style>
+
+body {
+  color: rgb(255, 255, 255);
+}
+
+
+  .botaoCss {
+  background-color: #00008bc4; 
+  border: 0.3em solid #ffffff;
+  color: rgb(255, 255, 255);
+  padding: 15px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+}
+
+.botao2Css {
+  background-color: #808080; 
+  border: 0.3em solid #ffffff;
+  color: #00008b;
+  padding: 15px 353px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.botao3Css {
+  background-color: #00008bc4; 
+  border: 0.3em solid #ffffff;
+  color: rgb(255, 255, 255);
+  padding: 15px 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+}
+
+.botao4Css {
+  background-color: #1eff00c4; 
+  border: 0.3em solid #ffffff;
+  color: rgb(255, 255, 255);
+  padding: 15px 260px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 22px;
+}
+
+.botao5Css {
+  background-color: #27c012c4; 
+  border: 0.3em solid #ffffff;
+  color: rgb(255, 255, 255);
+  padding: 10px 160px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 22px;
+}
+
+.divTela {
+  width: 0px;
+  height: 0px;
+  position: static;
+  top: 0px;
+  left: 0px;
+}
+
+.divBotoesEliminar {
+  width: 1200px;
+  height: 0px;
+  position: relative;
+  top: 630px;
+  left: 70px;
+}
+
+.divBotaoDesfazer {
+  width: 0px;
+  height: 0px;
+  position: relative;
+  top: 695px;
+  left: 70px;
+}
+
+.divBotoesLevantar {
+  width: 1800px;
+  height: 0px;
+  position: relative;
+  top: 760px;
+  left: 70px;
+}
+
+.divBotaoIniciar {
+  width: 0px;
+  height: 0px;
+  position: relative;
+  top: 710px;
+  left: 1100px;
+}
+
+.divBotaoReIniciar {
+  width: 0px;
+  height: 0px;
+  position: relative;
+  top: 790px;
+  left: 1190px;
+}
+
+
+.divInstrucoes {
+  width: 900px;
+  height: 0px;
+  position: relative;
+  top: 0px;
+  left: 920px;
+}
+
+.divImagem1 {
+  width: 0px;
+  height: 0px;
+  position: relative;
+  top: 200px;
+  left: 1300px;
+}
+
+.divImagem2 {
+  width: 0px;
+  height: 0px;
+  position: relative;
+  top: 200px;
+  left: 1130px;
+}
+
+canvas {
+    cursor: pointer;
+    margin-left: 132px;
+    margin-top: 0px;
+    }
+
+button {
+    cursor: pointer;
+    }
+
+
+</style>
+<!-- endregion -->
+
+<!-- #region body(</body> only at the end)--> 
+    
+    <body background="https://i.ibb.co/Yb9tHMN/FUNDO-RNG15.jpg"> 
+    <!-- <body bgcolor="black">  -->
+   
+
+    <br>
+    <br>
+
+    <div class="divTela">
+    <canvas width="620" height="620"></canvas>
+    </div>
+
+    <div class="divBotoesEliminar">
+    <button type="button" class="button2 botaoCss">Eliminate 1</button>
+    <button type="button" class="button3 botaoCss">Eliminate 2</button>
+    <button type="button" class="button4 botaoCss">Eliminate 3</button>
+    <button type="button" class="button5 botaoCss">Eliminate 4</button>
+    <button type="button" class="button6 botaoCss">Eliminate 5</button>
+    <button type="button" class="button7 botaoCss">Eliminate 6</button>
+    <button type="button" class="button8 botaoCss">Eliminate 7</button>
+    <button type="button" class="button9 botaoCss">Eliminate 8</button>
+    </div>
+        
+
+    <div class="divBotaoDesfazer">
+    <button type="button" class="button1 botao2Css">Undo</button>
+    </div>
+
+
+    <div class="divBotoesLevantar">
+    <button type="button" class="button10 botao3Css">Undo<br> elimination 1</button>
+    <button type="button" class="button11 botao3Css">Undo<br> elimination 2</button>
+    <button type="button" class="button12 botao3Css">Undo<br> elimination 3</button>
+    <button type="button" class="button13 botao3Css">Undo<br> elimination 4</button>
+    <button type="button" class="button14 botao3Css">Undo<br> elimination 5</button>
+    <button type="button" class="button15 botao3Css">Undo<br> elimination 6</button>
+    <button type="button" class="button16 botao3Css">Undo<br> elimination 7</button>
+    <button type="button" class="button17 botao3Css">Undo<br> elimination 8</button>
+    </div>
+
+    <div class="divBotaoIniciar">
+    <button type="button" class="button18 botao4Css">Start</button>
+    </div>
+
+    <div class="divBotaoReIniciar">
+    <button type="button" class="button19 botao5Css">Restart</button>
+    </div>
+
+    <div align='center' class="divInstrucoes">
+    <h1 align='center'>Instructions</h1>
+    Click start to active the alerts asking for your opponents names.
+    <br><br>
+    You must fill them up on the right order (check the images bellow for clarification on the right order).<br>
+    It's VERY important you type "me" (without the commas) once you're filling your own arena, or else the tracker won't work properly.
+    <br><br>
+    We reccomend you do it during your load screen, but you can still do it after the game started by following the order of the players 
+    on the health bars.
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    Once the game started, just click the players you face on the board at the left. Red players are possible opponents, while green players can't be your opponent
+    on the current turn. 
+    <br><br>
+    When a player is eliminated, click "Eliminate X" to eliminate that player, then continue using it the same way. Worth noting the algoritm resets when a player dies, so all squares will turn red to reflect that.
+    <br><br>
+    You can always correct miss clicks with the "undo" button, as well as "Undo elimination x" if you eliminated the wrong player.
+    
+    </div>
+ 
+
+    <div class="divImagem1">
+    <img src="https://i.ibb.co/V2tjN6S/isevca2cmxl31.png" alt="demonstracao1" width="375" height="300">
+    </div class="divImagem">
+
+    <div class="divImagem2">
+    <img src="https://i.ibb.co/T8rnGsV/Sem-t-tulo.png" alt="demonstracao2" width="150" height="300">
+    </div class="divImagem">
+<!-- endregion -->
+ 
+<!-- #region script--> 
+<script>
+//#region variáveis globais e query selectors
+	var tela = document.querySelector('canvas');
+	var pincel = tela.getContext('2d'); 
+    // pincel.fillStyle = 'yellow';
+    // pincel.fillRect(0, 0, 620, 620);
+
+	var botao1 = document.querySelector(".button1")
+	var botao2 = document.querySelector(".button2")
+    var botao3 = document.querySelector(".button3")
+    var botao4 = document.querySelector(".button4")
+    var botao5 = document.querySelector(".button5")
+    var botao6 = document.querySelector(".button6")
+    var botao7 = document.querySelector(".button7")
+    var botao8 = document.querySelector(".button8")
+    var botao9 = document.querySelector(".button9")
+    var botao10 = document.querySelector(".button10")
+    var botao11 = document.querySelector(".button11")
+    var botao12 = document.querySelector(".button12")
+    var botao13 = document.querySelector(".button13")
+    var botao14 = document.querySelector(".button14")
+    var botao15 = document.querySelector(".button15")
+    var botao16 = document.querySelector(".button16")
+    var botao17 = document.querySelector(".button17")
+    var botao18 = document.querySelector(".button18")
+    var botao19 = document.querySelector(".button19")
+
+	var cor1 ="red";
+	var cor2 ="red";
+	var cor3 ="red";
+	var cor4 ="red";
+	var cor5 ="red";
+	var cor6 ="red";
+	var cor7 ="red";
+	var cor8 ="red";
+
+	var contador1 = 100;
+	var contador2 = 100;
+	var contador3 = 100;
+	var contador4 = 100;
+	var contador5 = 100;
+	var contador6 = 100;
+	var contador7 = 100;
+	var contador8 = 100;
+
+	var contador1Backup = [];
+	var contador2Backup = [];
+	var contador3Backup = [];
+	var contador4Backup = [];
+	var contador5Backup = [];
+	var contador6Backup = [];
+	var contador7Backup = [];
+	var contador8Backup = [];
+
+	var playersVivos = 8;
+	var rodadasPassadas = 0;
+
+    rodadasPosEliminacao1=100;
+    rodadasPosEliminacao2=100;
+    rodadasPosEliminacao3=100;
+    rodadasPosEliminacao4=100;
+    rodadasPosEliminacao5=100;
+    rodadasPosEliminacao6=100;
+    rodadasPosEliminacao7=100;
+    rodadasPosEliminacao8=100;
+
+	var x=666;
+	var y=666;
+
+	var xDoMeMin=[];
+	var xDoMeMax=[];
+	var yDoMeMin=[];
+	var yDoMeMax=[];
+
+	var useless = 66;
+    var quadradoAtual = 0;
+    var telaAtivada=0
+
+ 
+	//#endregion
+
+//#region function nomear
+    
+    var adversario1;
+	var adversario2;
+	var adversario3;
+	var adversario4;
+	var adversario5;
+	var adversario6;
+	var adversario7;
+	var adversario8; 
+
+    var adversario1BackUp;
+    var adversario2BackUp;
+    var adversario3BackUp;
+    var adversario4BackUp;
+    var adversario5BackUp;
+    var adversario6BackUp;
+    var adversario7BackUp;
+    var adversario8BackUp;
+
+function nomearTemp() { 
+    adversario1 ='Temp';
+	adversario2 ='Temp';
+	adversario3 ='Temp';
+	adversario4 ='Temp';
+	adversario5 ='Temp';
+	adversario6 ='Temp';
+	adversario7 ='Temp';
+	adversario8 ='Temp'; 
+}
+
+function nomear() {
+	adversario1 = prompt('Name of opponent in ARENA 1: \n If it is you please type "me" ! (without the commas)');
+	adversario2 = prompt('Name of opponent in ARENA 2: \n If it is you please type "me" ! (without the commas)');
+	adversario3 = prompt('Name of opponent in ARENA 3: \n If it is you please type "me" ! (without the commas)');
+	adversario4 = prompt('Name of opponent in ARENA 4: \n If it is you please type "me" ! (without the commas)');
+	adversario5 = prompt('Name of opponent in ARENA 5: \n If it is you please type "me" ! (without the commas)');
+	adversario6 = prompt('Name of opponent in ARENA 6: \n If it is you please type "me" ! (without the commas)');
+	adversario7 = prompt('Name of opponent in ARENA 7: \n If it is you please type "me" ! (without the commas)');
+	adversario8 = prompt('Name of opponent in ARENA 8: \n If it is you please type "me" ! (without the commas)');
+
+        if (adversario1=="ME" || adversario1=="Me" || adversario1=="mE") {
+        adversario1="me";
+        }
+        
+        if (adversario2=="ME" || adversario2=="Me" || adversario2=="mE") {
+		adversario2="me";
+		}
+       
+        if (adversario3=="ME" || adversario3=="Me" || adversario3=="mE") {
+        adversario3="me";
+        }
+        
+        if (adversario4=="ME" || adversario4=="Me" || adversario4=="mE") {
+        adversario4="me";
+        }
+        
+        if (adversario5=="ME" || adversario5=="Me" || adversario5=="mE") {
+        adversario5="me";
+        }
+        
+        if (adversario6=="ME" || adversario6=="Me" || adversario6=="mE") {
+        adversario6="me";
+        }
+        
+        if (adversario7=="ME" || adversario7=="Me" || adversario7=="mE") {
+        adversario7="me";
+        }
+        
+        if (adversario8=="ME" || adversario8=="Me" || adversario8=="mE") {
+        adversario8="me";
+        }
+
+    // adversario1 ='Yugi';
+	// adversario2 ='Yugo';
+	// adversario3 ='Yusei ♥';
+	// adversario4 ='Yusaku';
+	// adversario5 ='me';
+	// adversario6 ='Alguem';
+	// adversario7 ='Playmaker';
+	// adversario8 ='Yuga????'; 
+
+    adversario1BackUp=adversario1;
+    adversario2BackUp=adversario2;
+    adversario3BackUp=adversario3;
+    adversario4BackUp=adversario4;
+    adversario5BackUp=adversario5;
+    adversario6BackUp=adversario6;
+    adversario7BackUp=adversario7;
+    adversario8BackUp=adversario8;
+
+    }
+
+	//#endregion
+
+//#region pintaTelaMorta
+function pintaTelaMorta(){
+
+//1
+pincel.fillStyle = 'grey';
+pincel.fillRect(210, 0, 200, 200); 
+pincel.strokeStyle = 'white';
+pincel.strokeRect(210, 0, 200, 200);
+pincel.strokeRect(0, 0, 200, 200);
+pincel.font = 'bold 20pt Menlo'
+pincel.fillStyle = 'black'
+pincel.fillText('waiting'+' (1)', 235, 110);
+
+
+//2
+pincel.fillStyle = 'grey';
+pincel.fillRect(420, 0, 200, 200);
+pincel.strokeStyle = 'white';
+pincel.strokeRect(420, 0, 200, 200);
+pincel.strokeRect(0, 0, 200, 200);
+pincel.font = 'bold 20pt Menlo'
+pincel.fillStyle = 'black'
+pincel.fillText('waiting'+' (2)', 450, 110);
+
+
+//3
+pincel.fillStyle = 'grey';
+pincel.fillRect(420, 210, 200, 200);
+pincel.strokeStyle = 'white';
+pincel.strokeRect(420, 210, 200, 200);
+pincel.strokeRect(0, 0, 200, 200);
+pincel.font = 'bold 20pt Menlo'
+pincel.fillStyle = 'black'
+pincel.fillText('waiting'+' (3)', 440, 310);
+
+//4
+pincel.fillStyle = 'grey';
+pincel.fillRect(420, 420, 200, 200);
+pincel.strokeStyle = 'white';
+pincel.strokeRect(420, 420, 200, 200);
+pincel.font = 'bold 20pt Menlo'
+pincel.fillStyle = 'black'
+pincel.fillText('waiting'+' (4)', 435, 520);
+
+//5
+pincel.fillStyle = 'grey';
+pincel.fillRect(210, 420, 200, 200);
+pincel.strokeStyle = 'white';
+pincel.strokeRect(210, 420, 200, 200);
+pincel.font = 'bold 20pt Menlo'
+pincel.fillStyle = 'black'
+pincel.fillText('waiting'+' (5)', 235, 520);
+
+//6
+pincel.fillStyle = 'grey';
+pincel.fillRect(0, 420, 200, 200);
+pincel.strokeStyle = 'white';
+pincel.strokeRect(0, 420, 200, 200);
+pincel.font = 'bold 20pt Menlo'
+pincel.fillStyle = 'black'
+pincel.fillText('waiting'+' (6)', 25, 520);
+
+//7
+pincel.fillStyle = 'grey';
+pincel.fillRect(0, 210, 200, 200);
+pincel.strokeStyle = 'white';
+pincel.strokeRect(0, 210, 200, 200);
+pincel.font = 'bold 20pt Menlo'
+pincel.fillStyle = 'black'
+pincel.fillText('waiting'+' (7)', 25, 310);
+
+
+//8
+pincel.fillStyle = 'grey';
+pincel.fillRect(0, 0, 200, 200);
+pincel.strokeStyle = 'white';
+pincel.strokeRect(0, 0, 200, 200);
+pincel.font = 'bold 20pt Menlo'
+pincel.fillStyle = 'black'
+pincel.fillText('waiting'+' (8)', 25, 110);
+
+//middle
+// pincel.fillStyle = 'grey';
+// pincel.beginPath();
+// pincel.arc(310, 310, 85, 0, 2 * 3.14);
+// pincel.fill();
+// pincel.strokeStyle = 'white';
+// pincel.stroke();
+
+}
+
+//#endregion
+//#region pintaTela
+    function pintaTela(){
+
+        //1
+        pincel.fillStyle = cor1;
+        pincel.fillRect(210, 0, 200, 200); 
+        pincel.strokeStyle = 'white';
+        pincel.strokeRect(210, 0, 200, 200);
+        pincel.strokeRect(0, 0, 200, 200);
+        pincel.font = 'bold 15pt Menlo'
+        pincel.fillStyle = 'black'
+        pincel.fillText(adversario1+' (1)', 220, 110);
+
+
+        //2
+        pincel.fillStyle = cor2;
+        pincel.fillRect(420, 0, 200, 200);
+        pincel.strokeStyle = 'white';
+        pincel.strokeRect(420, 0, 200, 200);
+        pincel.strokeRect(0, 0, 200, 200);
+        pincel.font = 'bold 15pt Menlo'
+        pincel.fillStyle = 'black'
+        pincel.fillText(adversario2+' (2)', 435, 110);
+
+
+        //3
+        pincel.fillStyle = cor3;
+        pincel.fillRect(420, 210, 200, 200);
+        pincel.strokeStyle = 'white';
+        pincel.strokeRect(420, 210, 200, 200);
+        pincel.strokeRect(0, 0, 200, 200);
+        pincel.font = 'bold 15pt Menlo'
+        pincel.fillStyle = 'black'
+        pincel.fillText(adversario3+' (3)', 430, 310);
+
+        //4
+        pincel.fillStyle = cor4;
+        pincel.fillRect(420, 420, 200, 200);
+        pincel.strokeStyle = 'white';
+        pincel.strokeRect(420, 420, 200, 200);
+        pincel.font = 'bold 15pt Menlo'
+        pincel.fillStyle = 'black'
+        pincel.fillText(adversario4+' (4)', 430, 520);
+
+        //5
+        pincel.fillStyle = cor5;
+        pincel.fillRect(210, 420, 200, 200);
+        pincel.strokeStyle = 'white';
+        pincel.strokeRect(210, 420, 200, 200);
+        pincel.font = 'bold 15pt Menlo'
+        pincel.fillStyle = 'black'
+        pincel.fillText(adversario5+' (5)', 220, 520);
+
+        //6
+        pincel.fillStyle = cor6;
+        pincel.fillRect(0, 420, 200, 200);
+        pincel.strokeStyle = 'white';
+        pincel.strokeRect(0, 420, 200, 200);
+        pincel.font = 'bold 15pt Menlo'
+        pincel.fillStyle = 'black'
+        pincel.fillText(adversario6+' (6)', 10, 520);
+
+        //7
+        pincel.fillStyle = cor7
+        pincel.fillRect(0, 210, 200, 200);
+        pincel.strokeStyle = 'white';
+        pincel.strokeRect(0, 210, 200, 200);
+        pincel.font = 'bold 15pt Menlo'
+        pincel.fillStyle = 'black'
+        pincel.fillText(adversario7+' (7)', 10, 310);
+
+
+        //8
+        pincel.fillStyle = cor8;
+        pincel.fillRect(0, 0, 200, 200);
+        pincel.strokeStyle = 'white';
+        pincel.strokeRect(0, 0, 200, 200);
+        pincel.font = 'bold 15pt Menlo'
+        pincel.fillStyle = 'black'
+        pincel.fillText(adversario8+' (8)', 10, 110);
+
+        //middle
+        //pincel.fillStyle = '#00008b';
+        //pincel.beginPath();
+        //pincel.arc(310, 310, 100, 0, 2 * 3.14);
+        //pincel.fill();
+        //pincel.strokeStyle = 'white';
+        //pincel.stroke();
+
+        }
+//#endregion
+
+//#region FUNCOES REFRESH
+    //#region function refresh8
+        function refresh8(){
+
+            if (contador1<=4 && contador1>=1) {
+
+            cor1="green"
+            } else {
+            cor1="red"
+            }
+
+            if (contador2<=4 && contador2>=1) {
+            cor2="green"
+            } else {
+            cor2="red"
+            }
+
+            if (contador3<=4 && contador3>=1) {
+            cor3="green"
+            } else {
+            cor3="red"
+            }
+
+            if (contador4<=4 && contador4>=1) {
+            cor4="green"
+            } else {
+            cor4="red"
+            }
+
+            if (contador5<=4 && contador5>=1) {
+            cor5="green"
+            } else {
+            cor5="red"
+            }
+
+            if (contador6<=4 && contador6>=1) {
+            cor6="green"
+            } else {
+            cor6="red"
+            }
+
+            if (contador7<=4 && contador7>=1) {
+            cor7="green"
+            } else {
+            cor7="red"
+            }
+
+            if (contador8<=4 && contador8>=1) {
+            cor8="green"
+            } else {
+            cor8="red"
+            }
+
+            if (adversario1=="me" || adversario1=="eliminado") {
+                cor1="grey";
+            }
+
+            if (adversario2=="me" || adversario2=="eliminado") {
+                cor2="grey";
+            }
+
+            if (adversario3=="me" || adversario3=="eliminado") {
+                cor3="grey";
+            }
+
+            if (adversario4 =="me" || adversario4=="eliminado") {
+                cor4="grey";
+            }
+
+            if (adversario5=="me" || adversario5=="eliminado") {
+                cor5="grey";
+            }
+
+            if (adversario6=="me" || adversario6=="eliminado") {
+                cor6="grey";
+            }
+
+            if (adversario7=="me" || adversario7=="eliminado") {
+                cor7="grey";
+            }
+
+            if (adversario8=="me" || adversario8=="eliminado") {
+                cor8="grey";
+            }
+            pintaTela();
+
+        }
+
+    //#endregion
+    //#region function refresh7
+    function refresh7(){
+
+    if (contador1<=3 && contador1>=1) {
+
+    cor1="green"
+    } else {
+    cor1="red"
+    }
+
+    if (contador2<=3 && contador2>=1) {
+    cor2="green"
+    } else {
+    cor2="red"
+    }
+
+    if (contador3<=3 && contador3>=1) {
+    cor3="green"
+    } else {
+    cor3="red"
+    }
+
+    if (contador4<=3 && contador4>=1) {
+    cor4="green"
+    } else {
+    cor4="red"
+    }
+
+    if (contador5<=3 && contador5>=1) {
+    cor5="green"
+    } else {
+    cor5="red"
+    }
+
+    if (contador6<=3 && contador6>=1) {
+    cor6="green"
+    } else {
+    cor6="red"
+    }
+
+    if (contador7<=3 && contador7>=1) {
+    cor7="green"
+    } else {
+    cor7="red"
+    }
+
+    if (contador8<=3 && contador8>=1) {
+    cor8="green"
+    } else {
+    cor8="red"
+    }
+
+    if (adversario1=="me" || adversario1=="eliminado") {
+        cor1="grey";
+    }
+
+    if (adversario2=="me" || adversario2=="eliminado") {
+        cor2="grey";
+    }
+
+    if (adversario3=="me" || adversario3=="eliminado") {
+        cor3="grey";
+    }
+
+    if (adversario4 =="me" || adversario4=="eliminado") {
+        cor4="grey";
+    }
+
+    if (adversario5=="me" || adversario5=="eliminado") {
+        cor5="grey";
+    }
+
+    if (adversario6=="me" || adversario6=="eliminado") {
+        cor6="grey";
+    }
+
+    if (adversario7=="me" || adversario7=="eliminado") {
+        cor7="grey";
+    }
+
+    if (adversario8=="me" || adversario8=="eliminado") {
+        cor8="grey";
+    }
+
+    pintaTela();
+
+    }
+    //#endregion
+    //#region function refresh6
+    function refresh6(){
+
+    if (contador1<=2 && contador1>=1) {
+
+    cor1="green"
+    } else {
+    cor1="red"
+    }
+
+    if (contador2<=2 && contador2>=1) {
+    cor2="green"
+    } else {
+    cor2="red"
+    }
+
+    if (contador3<=2 && contador3>=1) {
+    cor3="green"
+    } else {
+    cor3="red"
+    }
+
+    if (contador4<=2 && contador4>=1) {
+    cor4="green"
+    } else {
+    cor4="red"
+    }
+
+    if (contador5<=2 && contador5>=1) {
+    cor5="green"
+    } else {
+    cor5="red"
+    }
+
+    if (contador6<=2 && contador6>=1) {
+    cor6="green"
+    } else {
+    cor6="red"
+    }
+
+    if (contador7<=2 && contador7>=1) {
+    cor7="green"
+    } else {
+    cor7="red"
+    }
+
+    if (contador8<=2 && contador8>=1) {
+    cor8="green"
+    } else {
+    cor8="red"
+    }
+
+    if (adversario1=="me" || adversario1=="eliminado") {
+        cor1="grey";
+    }
+
+    if (adversario2=="me" || adversario2=="eliminado") {
+        cor2="grey";
+    }
+
+    if (adversario3=="me" || adversario3=="eliminado") {
+        cor3="grey";
+    }
+
+    if (adversario4 =="me" || adversario4=="eliminado") {
+        cor4="grey";
+    }
+
+    if (adversario5=="me" || adversario5=="eliminado") {
+        cor5="grey";
+    }
+
+    if (adversario6=="me" || adversario6=="eliminado") {
+        cor6="grey";
+    }
+
+    if (adversario7=="me" || adversario7=="eliminado") {
+        cor7="grey";
+    }
+
+    if (adversario8=="me" || adversario8=="eliminado") {
+        cor8="grey";
+    }
+
+    pintaTela();
+
+    }
+
+    //#endregion
+    //#region function refresh5e4
+        function refresh5e4(){
+
+        if (contador1<=1 && contador1>=1) {
+
+        cor1="green"
+        } else {
+        cor1="red"
+        }
+
+        if (contador2<=1 && contador2>=1) {
+        cor2="green"
+        } else {
+        cor2="red"
+        }
+
+        if (contador3<=1 && contador3>=1) {
+        cor3="green"
+        } else {
+        cor3="red"
+        }
+
+        if (contador4<=1 && contador4>=1) {
+        cor4="green"
+        } else {
+        cor4="red"
+        }
+
+        if (contador5<=1 && contador5>=1) {
+        cor5="green"
+        } else {
+        cor5="red"
+        }
+
+        if (contador6<=1 && contador6>=1) {
+        cor6="green"
+        } else {
+        cor6="red"
+        }
+
+        if (contador7<=1 && contador7>=1) {
+        cor7="green"
+        } else {
+        cor7="red"
+        }
+
+        if (contador8<=1 && contador8>=1) {
+        cor8="green"
+        } else {
+        cor8="red"
+        }
+
+        if (adversario1=="me" || adversario1=="eliminado") {
+            cor1="grey";
+        }
+
+        if (adversario2=="me" || adversario2=="eliminado") {
+            cor2="grey";
+        }
+
+        if (adversario3=="me" || adversario3=="eliminado") {
+            cor3="grey";
+        }
+
+        if (adversario4 =="me" || adversario4=="eliminado") {
+            cor4="grey";
+        }
+
+        if (adversario5=="me" || adversario5=="eliminado") {
+            cor5="grey";
+        }
+
+        if (adversario6=="me" || adversario6=="eliminado") {
+            cor6="grey";
+        }
+
+        if (adversario7=="me" || adversario7=="eliminado") {
+            cor7="grey";
+        }
+
+        if (adversario8=="me" || adversario8=="eliminado") {
+            cor8="grey";
+        }
+
+        pintaTela();
+
+    }
+
+    //#endregion
+    //#region function refresh3Menos
+function refresh3Menos(){
+
+    if (contador1<=0 && contador1>=1) {
+
+    cor1="green"
+    } else {
+    cor1="red"
+    }
+
+    if (contador2<=0 && contador2>=1) {
+    cor2="green"
+    } else {
+    cor2="red"
+    }
+
+    if (contador3<=0 && contador3>=1) {
+    cor3="green"
+    } else {
+    cor3="red"
+    }
+
+    if (contador4<=0 && contador4>=1) {
+    cor4="green"
+    } else {
+    cor4="red"
+    }
+
+    if (contador5<=0 && contador5>=1) {
+    cor5="green"
+    } else {
+    cor5="red"
+    }
+
+    if (contador6<=0 && contador6>=1) {
+    cor6="green"
+    } else {
+    cor6="red"
+    }
+
+    if (contador7<=0 && contador7>=1) {
+    cor7="green"
+    } else {
+    cor7="red"
+    }
+
+    if (contador8<=0 && contador8>=1) {
+    cor8="green"
+    } else {
+    cor8="red"
+    }
+
+    if (adversario1=="me" || adversario1=="eliminado") {
+        cor1="grey";
+    }
+
+    if (adversario2=="me" || adversario2=="eliminado") {
+        cor2="grey";
+    }
+
+    if (adversario3=="me" || adversario3=="eliminado") {
+        cor3="grey";
+    }
+
+    if (adversario4 =="me" || adversario4=="eliminado") {
+        cor4="grey";
+    }
+
+    if (adversario5=="me" || adversario5=="eliminado") {
+        cor5="grey";
+    }
+
+    if (adversario6=="me" || adversario6=="eliminado") {
+        cor6="grey";
+    }
+
+    if (adversario7=="me" || adversario7=="eliminado") {
+        cor7="grey";
+    }
+
+    if (adversario8=="me" || adversario8=="eliminado") {
+        cor8="grey";
+    }
+
+    pintaTela();
+
+}
+//#endregion
+//#endregion
+
+//#region function checkMe
+  function checkMe(){
+	if (adversario1=="me") {
+		contador1=1000;
+        xDoMeMin.push(210);
+        xDoMeMax.push(410);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+		if (adversario2=="me") {
+		contador2=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+		if (adversario3=="me") {
+		contador3=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(210);
+        yDoMeMax.push(410);
+		}
+
+		if (adversario4=="me") {
+		contador4=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(420);
+        yDoMeMax.push(620);
+        }
+
+		if (adversario5=="me") {
+		contador5=1000;
+        xDoMeMin.push(210);
+        xDoMeMax.push(410);
+        yDoMeMin.push(420);
+        yDoMeMax.push(620);
+		}
+
+		if (adversario6=="me") {
+		contador6=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(420);
+        yDoMeMax.push(620);
+		}
+
+		if (adversario7=="me") {
+		contador7=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(210);
+        yDoMeMax.push(410);
+		}
+
+		if (adversario8=="me") {
+		contador8=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+    }
+	//#endregion
+//#region function checkEliminado
+  function checkEliminado(){
+	if (adversario1=="eliminado") {
+		contador1=1000;
+        xDoMeMin.push(210);
+        xDoMeMax.push(410);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+		if (adversario2=="eliminado") {
+		contador2=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+		if (adversario3=="eliminado") {
+		contador3=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(210);
+        yDoMeMax.push(410);
+		}
+
+		if (adversario4=="eliminado") {
+		contador4=1000;
+        xDoMeMin.push(420);
+        xDoMeMax.push(620);
+        yDoMeMin.push(420);
+        yDoMeMax.push(620);
+        }
+
+		if (adversario5=="eliminado") {
+		contador5=1000;
+        xDoMeMin.push(210);
+        xDoMeMax.push(410);
+        yDoMeMin.push(420);
+        yDoMeMax.push(620);
+		}
+
+		if (adversario6=="eliminado") {
+		contador6=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(420);
+        yDoMeMax.push(620);
+		}
+
+		if (adversario7=="eliminado") {
+		contador7=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(210);
+        yDoMeMax.push(410);
+		}
+
+		if (adversario8=="eliminado") {
+		contador8=1000;
+        xDoMeMin.push(0);
+        xDoMeMax.push(200);
+        yDoMeMin.push(0);
+        yDoMeMax.push(200);
+		}
+
+        if (playersVivos==8) {
+		refresh8();
+		}else if (playersVivos==7) {
+		refresh7();
+		}else if (playersVivos==6) {
+		refresh6();
+        }else if (playersVivos==5) {
+		refresh5e4();
+        }else if (playersVivos==4) {
+		refresh5e4();
+        }else if (playersVivos==3) {
+		refresh3Menos();
+        }else if (playersVivos==2) {
+        refresh3Menos();
+        }else if (playersVivos==1) {
+        refresh3Menos();
+        }
+
+
+}
+	//#endregion
+
+//#region function click
+
+	function click(coordenada) {
+        x = coordenada.pageX - tela.offsetLeft;
+		y = coordenada.pageY - tela.offsetTop;
+
+
+        if (x>200 && x<210 || x>410 && x<420 || y>200 && y<210 || y>410 && y<420 || x>=210 && x<=410 && y>=210 && y<=410) {
+		    return;
+        }   
+
+        if (telaAtivada==0) {
+		    return;
+        }   
+        
+        var i;
+        for (i = 0; i < xDoMeMin.length; i++) {
+            if (x>xDoMeMin[i] && x<xDoMeMax[i] && y>yDoMeMin[i] && y<yDoMeMax[i]) {
+		    return;
+		    } 
+        }
+        
+        //Atual 8
+        if (x<=200 && y<=200) {
+		quadradoAtual=8
+		} 
+
+
+        //Atual 1
+        if (x>210 && x<=410 && y<=200) {
+        quadradoAtual=1
+		} 
+
+        //Atual 2
+        if (x>420 && x<=620 && y<=200) {
+        quadradoAtual=2
+		} 
+
+        //Atual 3
+        if (x>=420 && x<=620 && y>=210 && y<=410) {
+        quadradoAtual=3
+		} 
+
+        //Atual 4
+        if (x>=420 && x<=620 && y>=420 && y<=620) {
+        quadradoAtual=4
+		} 
+
+        //Atual 5
+        if (x>=210 && x<=410 && y>=420 && y<=620) {
+         quadradoAtual=5
+		} 
+
+        //Atual 6
+        if (x>=0 && x<=200 && y>=420 && y<=620) {
+        quadradoAtual=6
+		} 
+
+        //Atual 7
+        if (x>=0 && x<=200 && y>=210 && y<=410) {
+        quadradoAtual=7
+		}         
+
+        if (quadradoAtual==1 && cor1=="green") {
+		    return;
+        }   
+
+        if (quadradoAtual==2 && cor2=="green") {
+		    return;
+        }   
+
+        if (quadradoAtual==3 && cor3=="green") {
+		    return;
+        }   
+
+        if (quadradoAtual==4 && cor4=="green") {
+		    return;
+        }   
+
+        if (quadradoAtual==5 && cor5=="green") {
+		    return;
+        }   
+
+        if (quadradoAtual==6 && cor6=="green") {
+		    return;
+        }   
+
+        if (quadradoAtual==7 && cor7=="green") {
+		    return;
+        }   
+      
+        if (quadradoAtual==8 && cor8=="green") {
+		    return;
+        }   
+            
+
+
+        contador1Backup.push(contador1);
+		contador2Backup.push(contador2);
+		contador3Backup.push(contador3);
+		contador4Backup.push(contador4);
+		contador5Backup.push(contador5);
+		contador6Backup.push(contador6);
+		contador7Backup.push(contador7);
+		contador8Backup.push(contador8);
+
+		contador1++;
+		contador2++;
+		contador3++;
+		contador4++;
+		contador5++;
+		contador6++;
+		contador7++;
+		contador8++;
+
+		if (cor8=='grey') {
+		useless=23;
+		} else if (x<=200 && y<=200) {
+		contador8=1;
+		} 
+
+		if (cor1=='grey') {
+		useless=23;
+		} else if (x>210 && x<=410 && y<=200) {
+		contador1=1;
+		}
+
+		if (cor2=='grey') {
+		useless=23;
+		} else if (x>420 && x<=620 && y<=200) {
+		contador2=1;
+		}
+
+		if (cor3=='grey') {
+		useless=23;
+		} else if (x>=420 && x<=620 && y>=210 && y<=410) {
+		contador3=1;
+		}
+
+		if (cor4=='grey') {
+		useless=23;
+		} else if (x>=420 && x<=620 && y>=420 && y<=620) {
+		contador4=1;
+		}
+
+		if (cor5=='grey') {
+		useless=23;
+		} else if (x>=210 && x<=410 && y>=420 && y<=620) {
+		contador5=1;
+		}
+
+		if (cor6=='grey') {
+		useless=23;
+		} else if (x>=0 && x<=200 && y>=420 && y<=620) {
+		contador6=1;
+		}
+
+		if (cor7=='grey') {
+		useless=23;
+		} else if (x>=0 && x<=200 && y>=210 && y<=410) {
+		contador7=1;
+		}
+
+        rodadasPosEliminacao1++;
+        rodadasPosEliminacao2++;
+        rodadasPosEliminacao3++;
+        rodadasPosEliminacao4++;
+        rodadasPosEliminacao5++;
+        rodadasPosEliminacao6++;
+        rodadasPosEliminacao7++;
+        rodadasPosEliminacao8++;
+
+		rodadasPassadas++;
+
+        if (playersVivos==8) {
+		refresh8();
+		}else if (playersVivos==7) {
+		refresh7();
+		}else if (playersVivos==6) {
+		refresh6();
+        }else if (playersVivos==5) {
+		refresh5e4();
+        }else if (playersVivos==4) {
+		refresh5e4();
+        }else if (playersVivos==3) {
+		refresh3Menos();
+        }else if (playersVivos==2) {
+        refresh3Menos();
+        }else if (playersVivos==1) {
+        refresh3Menos();
+        }
+
+	
+
+	}
+	//#endregion
+
+//#region function desfazer
+	function desfazer() {
+   
+        if (telaAtivada==0) {
+		    return;
+        }        
+            
+		rodadasPassadas--;
+		contador1=contador1Backup[rodadasPassadas];
+		contador2=contador2Backup[rodadasPassadas];
+		contador3=contador3Backup[rodadasPassadas];
+		contador4=contador4Backup[rodadasPassadas];
+		contador5=contador5Backup[rodadasPassadas];
+		contador6=contador6Backup[rodadasPassadas];
+		contador7=contador7Backup[rodadasPassadas];
+		contador8=contador8Backup[rodadasPassadas];
+    
+        if (rodadasPassadas<0) {
+            rodadasPassadas=0;
+        }
+
+		contador1Backup.length=rodadasPassadas;
+		contador2Backup.length=rodadasPassadas;
+		contador3Backup.length=rodadasPassadas;
+		contador4Backup.length=rodadasPassadas;
+		contador5Backup.length=rodadasPassadas;
+		contador6Backup.length=rodadasPassadas;
+		contador7Backup.length=rodadasPassadas;
+		contador8Backup.length=rodadasPassadas;
+
+        if (playersVivos==8) {
+		refresh8();
+		}else if (playersVivos==7) {
+		refresh7();
+		}else if (playersVivos==6) {
+		refresh6();
+        }else if (playersVivos==5) {
+		refresh5e4();
+        }else if (playersVivos==4) {
+		refresh5e4();
+        }else if (playersVivos==3) {
+		refresh3Menos();
+        }else if (playersVivos==2) {
+        refresh3Menos();
+        }else if (playersVivos==1) {
+        refresh3Menos();
+        }
+	}
+
+	//#endregion
+
+//#region FUNCOES ELIMINAR
+    //#region function eliminar1
+        function eliminar1() {
+
+        if (adversario1=="eliminado") {
+        return;
+        }   
+
+        if (adversario1=="me") {
+        return;
+        }  
+    
+        if (telaAtivada==0) {
+                return;
+            }        
+        
+        adversario1="eliminado";
+
+        contador1Backup.push(contador1);
+        contador2Backup.push(contador2);
+        contador3Backup.push(contador3);
+        contador4Backup.push(contador4);
+        contador5Backup.push(contador5);
+        contador6Backup.push(contador6);
+        contador7Backup.push(contador7);
+        contador8Backup.push(contador8);
+
+        rodadasPassadas++;
+
+        contador1=100;
+        contador2=100;
+        contador3=100;
+        contador4=100;
+        contador5=100;
+        contador6=100;
+        contador7=100; 
+        contador8=100;
+        playersVivos--;
+
+        rodadasPosEliminacao1=0;
+        checkEliminado();
+        }
+        //#endregion
+    //#region function eliminar2
+        function eliminar2() {
+
+        if (adversario2=="eliminado") {
+        return;
+        }  
+
+        if (adversario2=="me") {
+        return;
+        }   
+    
+        if (telaAtivada==0) {
+                return;
+            }        
+            
+        adversario2="eliminado";
+
+        contador1Backup.push(contador1);
+        contador2Backup.push(contador2);
+        contador3Backup.push(contador3);
+        contador4Backup.push(contador4);
+        contador5Backup.push(contador5);
+        contador6Backup.push(contador6);
+        contador7Backup.push(contador7);
+        contador8Backup.push(contador8);
+
+        rodadasPassadas++;
+        
+
+        contador1=100;
+        contador2=100;
+        contador3=100;
+        contador4=100;
+        contador5=100;
+        contador6=100;
+        contador7=100; 
+        contador8=100;
+        playersVivos--;
+
+        rodadasPosEliminacao2=0;
+
+        checkEliminado();
+        }
+        //#endregion
+    //#region function eliminar3
+        function eliminar3() {
+
+        if (adversario3=="eliminado") {
+        return;
+        } 
+
+        if (adversario3=="me") {
+        return;
+        }   
+    
+        if (telaAtivada==0) {
+                return;
+            }        
+            
+        adversario3="eliminado";
+
+        contador1Backup.push(contador1);
+        contador2Backup.push(contador2);
+        contador3Backup.push(contador3);
+        contador4Backup.push(contador4);
+        contador5Backup.push(contador5);
+        contador6Backup.push(contador6);
+        contador7Backup.push(contador7);
+        contador8Backup.push(contador8);
+
+        rodadasPassadas++;
+        
+
+        contador1=100;
+        contador2=100;
+        contador3=100;
+        contador4=100;
+        contador5=100;
+        contador6=100;
+        contador7=100; 
+        contador8=100;
+        playersVivos--;
+
+        rodadasPosEliminacao3=0;
+
+        checkEliminado();
+        }
+        //#endregion
+    //#region function eliminar4
+        function eliminar4() {
+
+        if (adversario4=="eliminado") {
+        return;
+        }  
+
+        if (adversario4=="me") {
+        return;
+        }   
+    
+        if (telaAtivada==0) {
+                return;
+            }        
+        
+        adversario4="eliminado";
+
+        contador1Backup.push(contador1);
+        contador2Backup.push(contador2);
+        contador3Backup.push(contador3);
+        contador4Backup.push(contador4);
+        contador5Backup.push(contador5);
+        contador6Backup.push(contador6);
+        contador7Backup.push(contador7);
+        contador8Backup.push(contador8);
+
+        rodadasPassadas++;
+        
+
+        contador1=100;
+        contador2=100;
+        contador3=100;
+        contador4=100;
+        contador5=100;
+        contador6=100;
+        contador7=100; 
+        contador8=100;
+        playersVivos--;
+
+        rodadasPosEliminacao4=0;
+
+        checkEliminado();
+        }
+        //#endregion
+    //#region function eliminar5
+    function eliminar5() {
+
+    if (adversario5=="eliminado") {
+    return;
+    } 
+
+    if (adversario5=="me") {
+    return;
+    }   
+    
+    if (telaAtivada==0) {
+                return;
+            }        
+        
+    adversario5="eliminado";
+
+        contador1Backup.push(contador1);
+        contador2Backup.push(contador2);
+        contador3Backup.push(contador3);
+        contador4Backup.push(contador4);
+        contador5Backup.push(contador5);
+        contador6Backup.push(contador6);
+        contador7Backup.push(contador7);
+        contador8Backup.push(contador8);
+
+        rodadasPassadas++;
+        
+    contador1=100;
+    contador2=100;
+    contador3=100;
+    contador4=100;
+    contador5=100;
+    contador6=100;
+    contador7=100; 
+    contador8=100;
+    playersVivos--;
+
+    rodadasPosEliminacao5=0;
+
+    checkEliminado();
+    }
+        //#endregion
+    //#region function eliminar6
+        
+        function eliminar6() {
+
+        if (adversario6=="eliminado") {
+        return;
+        }  
+
+        if (adversario6=="me") {
+        return;
+        }   
+    
+        if (telaAtivada==0) {
+                return;
+            }        
+        
+        adversario6="eliminado";
+
+        contador1Backup.push(contador1);
+        contador2Backup.push(contador2);
+        contador3Backup.push(contador3);
+        contador4Backup.push(contador4);
+        contador5Backup.push(contador5);
+        contador6Backup.push(contador6);
+        contador7Backup.push(contador7);
+        contador8Backup.push(contador8);
+
+        rodadasPassadas++;
+        
+        contador1=100;
+        contador2=100;
+        contador3=100;
+        contador4=100;
+        contador5=100;
+        contador6=100;
+        contador7=100; 
+        contador8=100;
+        playersVivos--;
+
+        rodadasPosEliminacao6=0;
+
+        checkEliminado();
+        }
+        //#endregion  
+    //#region function eliminar7
+        function eliminar7() {
+        if (adversario7=="eliminado") {
+        return;
+        }  
+
+        if (adversario7=="me") {
+        return;
+        }   
+    
+        if (telaAtivada==0) {
+                return;
+            }        
+        
+        adversario7="eliminado";
+
+        contador1Backup.push(contador1);
+        contador2Backup.push(contador2);
+        contador3Backup.push(contador3);
+        contador4Backup.push(contador4);
+        contador5Backup.push(contador5);
+        contador6Backup.push(contador6);
+        contador7Backup.push(contador7);
+        contador8Backup.push(contador8);
+
+        rodadasPassadas++;
+        
+
+        contador1=100;
+        contador2=100;
+        contador3=100;
+        contador4=100;
+        contador5=100;
+        contador6=100;
+        contador7=100; 
+        contador8=100;
+        playersVivos--;
+
+        rodadasPosEliminacao7=0;
+
+        checkEliminado();
+        }
+        //#endregion
+    //#region function eliminar8
+        function eliminar8() {
+        
+        if (adversario8=="eliminado") {
+        return;
+        }  
+
+        if (adversario8=="me") {
+        return;
+        }   
+    
+        if (telaAtivada==0) {
+                return;
+            }        
+        
+        adversario8="eliminado";
+
+        contador1Backup.push(contador1);
+        contador2Backup.push(contador2);
+        contador3Backup.push(contador3);
+        contador4Backup.push(contador4);
+        contador5Backup.push(contador5);
+        contador6Backup.push(contador6);
+        contador7Backup.push(contador7);
+        contador8Backup.push(contador8);
+
+        rodadasPassadas++;
+        
+
+        contador1=100;
+        contador2=100;
+        contador3=100;
+        contador4=100;
+        contador5=100;
+        contador6=100;
+        contador7=100; 
+        contador8=100;
+        playersVivos--;
+
+        rodadasPosEliminacao8=0;
+
+        checkEliminado();
+        }
+        //#endregion
+//#endregion
+
+//#region FUNCOES LEVANTAR
+    //#region function levantar1
+    function levantar1() {
+
+    if (adversario1!="eliminado") {
+    return;
+    }  
+
+    if (rodadasPosEliminacao1>0) {
+    alert("Can't undo elimination, too many rounds have passed since this player elimination!\nThis function is intended to correct missclicks only!");
+    return;
+    }  
+
+    adversario1=adversario1BackUp;
+
+        var i;
+        for (i = 0; i < 50; i++) {
+            if (xDoMeMin[i]==210  && xDoMeMax[i]==410 && yDoMeMin[i]==0 && yDoMeMax[i]==200) {
+            xDoMeMin.splice(i, 1); 
+            xDoMeMax.splice(i, 1);
+            yDoMeMin.splice(i, 1);
+            yDoMeMax.splice(i, 1);
+            } 
+        }
+
+    desfazer();
+    playersVivos++;
+
+    checkMe();
+    checkEliminado();
+    }
+    //#endregion
+    //#region function levantar2
+    function levantar2() {
+
+    if (adversario2!="eliminado") {
+    return;
+    }   
+
+    if (rodadasPosEliminacao2>0) {
+    alert("Can't undo elimination, too many rounds have passed since this player elimination!\nThis function is intended to correct missclicks only!");
+    return;
+    }  
+    adversario2=adversario2BackUp;
+
+        var i;
+        for (i = 0; i < 50; i++) {
+            if (xDoMeMin[i]==420  && xDoMeMax[i]==620 && yDoMeMin[i]==0 && yDoMeMax[i]==200) {
+            xDoMeMin.splice(i, 1); 
+            xDoMeMax.splice(i, 1);
+            yDoMeMin.splice(i, 1);
+            yDoMeMax.splice(i, 1);
+            } 
+        }
+
+    desfazer();
+    playersVivos++;
+
+    checkMe();
+    checkEliminado();
+    }
+    //#endregion
+    //#region function levantar3
+    function levantar3() {
+
+    if (adversario3!="eliminado") {
+    return;
+    }   
+
+    if (rodadasPosEliminacao3>0) {
+    alert("Can't undo elimination, too many rounds have passed since this player elimination!\nThis function is intended to correct missclicks only!");
+    return;
+    }  
+
+    adversario3=adversario3BackUp;
+
+        var i;
+        for (i = 0; i < 50; i++) {
+            if (xDoMeMin[i]==420  && xDoMeMax[i]==620 && yDoMeMin[i]==210 && yDoMeMax[i]==410) {
+            xDoMeMin.splice(i, 1); 
+            xDoMeMax.splice(i, 1);
+            yDoMeMin.splice(i, 1);
+            yDoMeMax.splice(i, 1);
+            } 
+        }
+
+    desfazer();
+    playersVivos++;
+
+    checkMe();
+    checkEliminado();
+    }
+    //#endregion
+    //#region function levantar4
+    function levantar4() {
+
+    if (adversario4!="eliminado") {
+    return;
+    }   
+
+    if (rodadasPosEliminacao4>0) {
+    alert("Can't undo elimination, too many rounds have passed since this player elimination!\nThis function is intended to correct missclicks only!");
+    return;
+    }  
+
+    adversario4=adversario4BackUp;
+
+        var i;
+        for (i = 0; i < 50; i++) {
+            if (xDoMeMin[i]==420  && xDoMeMax[i]==620 && yDoMeMin[i]==420 && yDoMeMax[i]==620) {
+            xDoMeMin.splice(i, 1); 
+            xDoMeMax.splice(i, 1);
+            yDoMeMin.splice(i, 1);
+            yDoMeMax.splice(i, 1);
+            } 
+        }
+
+    desfazer();
+    playersVivos++;
+
+    checkMe();
+    checkEliminado();
+    }
+    //#endregion
+    //#region function levantar5
+    function levantar5() {
+
+    if (adversario5!="eliminado") {
+    return;
+    }   
+
+    if (rodadasPosEliminacao5>0) {
+    alert("Can't undo elimination, too many rounds have passed since this player elimination!\nThis function is intended to correct missclicks only!");
+    return;
+    }  
+    adversario5=adversario5BackUp;
+
+        var i;
+        for (i = 0; i < 50; i++) {
+            if (xDoMeMin[i]==210  && xDoMeMax[i]==410 && yDoMeMin[i]==420 && yDoMeMax[i]==620) {
+            xDoMeMin.splice(i, 1); 
+            xDoMeMax.splice(i, 1);
+            yDoMeMin.splice(i, 1);
+            yDoMeMax.splice(i, 1);
+            } 
+        }
+
+
+    desfazer();
+    playersVivos++;
+
+    checkMe();
+    checkEliminado();
+    }
+    //#endregion
+    //#region function levantar6
+    function levantar6() {
+
+    if (adversario6!="eliminado") {
+    return;
+    }   
+
+    if (rodadasPosEliminacao6>0) {
+    alert("Can't undo elimination, too many rounds have passed since this player elimination!\nThis function is intended to correct missclicks only!");
+    return;
+    }  
+
+    adversario6=adversario6BackUp;
+
+        var i;
+        for (i = 0; i < 50; i++) {
+            if (xDoMeMin[i]==0  && xDoMeMax[i]==200 && yDoMeMin[i]==420 && yDoMeMax[i]==620) {
+            xDoMeMin.splice(i, 1); 
+            xDoMeMax.splice(i, 1);
+            yDoMeMin.splice(i, 1);
+            yDoMeMax.splice(i, 1);
+            } 
+        }
+
+    desfazer();
+    playersVivos++;
+
+    checkMe();
+    checkEliminado();
+    }
+    //#endregion
+    //#region function levantar7
+    function levantar7() {
+
+    if (adversario7!="eliminado") {
+    return;
+    }   
+
+    if (rodadasPosEliminacao7>0) {
+    alert("Can't undo elimination, too many rounds have passed since this player elimination!\nThis function is intended to correct missclicks only!");
+    return;
+    }  
+
+    adversario7=adversario7BackUp;
+
+        var i;
+        for (i = 0; i < 50; i++) {
+            if (xDoMeMin[i]==0  && xDoMeMax[i]==200 && yDoMeMin[i]==210 && yDoMeMax[i]==410) {
+            xDoMeMin.splice(i, 1); 
+            xDoMeMax.splice(i, 1);
+            yDoMeMin.splice(i, 1);
+            yDoMeMax.splice(i, 1);
+            } 
+        }
+
+    desfazer();
+    playersVivos++;
+
+    checkMe();
+    checkEliminado();
+    }
+    //#endregion
+    //#region function levantar8
+    
+    function levantar8() {
+
+    if (adversario8!="eliminado") {
+    return;
+    }   
+
+    if (rodadasPosEliminacao8>0) {
+    alert("Can't undo elimination, too many rounds have passed since this player elimination!\nThis function is intended to correct missclicks only!");
+    return;
+    }  
+
+    adversario8=adversario8BackUp;
+
+        var i;
+        for (i = 0; i < 50; i++) {
+            if (xDoMeMin[i]==0  && xDoMeMax[i]==200 && yDoMeMin[i]==0 && yDoMeMax[i]==200) {
+            xDoMeMin.splice(i, 1); 
+            xDoMeMax.splice(i, 1);
+            yDoMeMin.splice(i, 1);
+            yDoMeMax.splice(i, 1);
+            } 
+        }
+
+    desfazer();
+    playersVivos++;
+
+    checkMe();
+    checkEliminado();
+    }
+    //#endregion
+//#endregion
+
+//#region function ativarTela 
+function iniciar() {
+
+if (telaAtivada>=1) {
+return;
+}   
+
+telaAtivada=1;
+nomear();
+checkMe();
+refresh8();
+}
+//#endregion
+
+//#region function reIniciar 
+function reIniciar() {
+    if (telaAtivada==0) {
+    return;
+    }   
+var sure = confirm("Are you sure you want to restart?");
+if (sure==false) {
+return;
+}   
+contador1=100;
+contador2=100;
+contador3=100;
+contador4=100;
+contador5=100;
+contador6=100;
+contador7=100;
+contador8=100;
+nomear();
+checkMe();
+refresh8();
+}
+//#endregion
+
+//#region onload e afins
+
+        onload=pintaTelaMorta();
+        onLoad=nomearTemp();
+		tela.onclick = click;
+
+		botao1.onclick = desfazer;
+		botao2.onclick = eliminar1;
+        botao3.onclick = eliminar2;
+        botao4.onclick = eliminar3;
+        botao5.onclick = eliminar4;
+        botao6.onclick = eliminar5;
+        botao7.onclick = eliminar6;
+        botao8.onclick = eliminar7;
+        botao9.onclick = eliminar8;
+
+        botao10.onclick = levantar1;
+        botao11.onclick = levantar2;
+		botao12.onclick = levantar3;
+        botao13.onclick = levantar4;
+        botao14.onclick = levantar5;
+        botao15.onclick = levantar6;
+        botao16.onclick = levantar7;
+        botao17.onclick = levantar8;
+
+        botao18.onclick = iniciar;
+
+        botao19.onclick = reIniciar;
+
+//#endregion
+</script>
+<!-- endregion script -->
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+<title>FFS</title>
+</head>
+
+<body bgcolor="lightblue">
+	<canvas width="700" height="700"></canvas>
+<script>
+
+var tela = document.querySelector('canvas');
+var pincel = tela.getContext('2d');
+
+var cor1 ="red";
+var cor2 ="red";
+var cor3 ="red";
+var cor4 ="red";
+var cor5 ="red";
+var cor6 ="red";
+var cor7 ="red";
+var cor8 ="red";
+var contador1 = 100;
+var contador2 = 100;
+var contador3 = 100;
+var contador4 = 100;
+var contador5 = 100;
+var contador6 = 100;
+var contador7 = 100;
+var contador8 = 100;
+
+	function refresh(){
+
+		//1
+		pincel.fillStyle = cor1;
+		pincel.fillRect(210, 0, 200, 200);
+		pincel.strokeStyle = 'black';
+		pincel.strokeRect(210, 0, 200, 200);
+
+		//2
+		pincel.fillStyle = cor2;
+		pincel.fillRect(420, 0, 200, 200);
+		pincel.strokeStyle = 'black';
+		pincel.strokeRect(420, 0, 200, 200);
+
+		//3
+		pincel.fillStyle = cor3;
+		pincel.fillRect(420, 210, 200, 200);
+		pincel.strokeStyle = 'black';
+		pincel.strokeRect(420, 210, 200, 200);
+
+		//4
+		pincel.fillStyle = cor4;
+		pincel.fillRect(420, 420, 200, 200);
+		pincel.strokeStyle = 'black';
+		pincel.strokeRect(420, 420, 200, 200);
+
+		//5
+		pincel.fillStyle = cor5;
+		pincel.fillRect(210, 420, 200, 200);
+		pincel.strokeStyle = 'black';
+		pincel.strokeRect(210, 420, 200, 200);
+
+		//6
+		pincel.fillStyle = cor6;
+		pincel.fillRect(0, 420, 200, 200);
+		pincel.strokeStyle = 'black';
+		pincel.strokeRect(0, 420, 200, 200);
+
+		//7
+		pincel.fillStyle = cor7
+		pincel.fillRect(0, 210, 200, 200);
+		pincel.strokeStyle = 'black';
+		pincel.strokeRect(0, 210, 200, 200);
+
+		//8
+		pincel.fillStyle = cor8;
+		pincel.fillRect(0, 0, 200, 200);
+		pincel.strokeStyle = 'black';
+		pincel.strokeRect(0, 0, 200, 200);
+
+		//middle
+		pincel.fillStyle = 'black';
+		pincel.fillRect(210, 210, 200, 200);
+		pincel.strokeStyle = 'yellow';
+		pincel.strokeRect(210, 210, 200, 200);
+
+}
+
+
+function click(coordenada) {
+    var x = coordenada.pageX - tela.offsetLeft;
+    var y = coordenada.pageY - tela.offsetTop;
+
+	if (x<=200 && y<=200) {
+	  cor8="green";
+	  contador8=1;
+	  }
+
+	if (x>210 && x<=410 && y<=200) {
+	  cor1="green";
+	  contador1=1;
+	}
+
+	if (x>420 && x<=620 && y<=200) {
+	  cor2="green";
+	  contador2=1;
+	}
+
+	if (x>=420 && x<=620 && y>=210 && y<=410) {
+	  cor3="green";
+	  contador3=1;
+	}
+
+	if (x>=420 && x<=620 && y>=420 && y<=620) {
+	  cor4="green";
+	  contador4=1;
+	}
+
+	if (x>=210 && x<=410 && y>=420 && y<=620) {
+	  cor5="green";
+	  contador5=1;
+	}
+
+	if (x>=0 && x<=200 && y>=420 && y<=620) {
+	  cor6="green"
+	  contador6=1;
+	}
+
+	if (x>=0 && x<=200 && y>=210 && y<=410) {
+	  cor7="green"
+	  contador7=1;
+	}
+
+    refresh();
+
+}
+
+	onload=refresh();
+
+	tela.onclick=click;
+
+
+
+</script>
+</body>
+</html>
